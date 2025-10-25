@@ -1,0 +1,69 @@
+[gd_scene load_steps=7 format=3 uid="uid://dfq2iqhuccltx"]
+
+[ext_resource type="Script" uid="uid://4vxvmd16aeo1" path="res://scenes/game/game.gd" id="1_lbhrr"]
+[ext_resource type="Texture2D" uid="uid://doghmovcgeltw" path="res://assets/graphics/map.png" id="1_uwrxv"]
+[ext_resource type="PackedScene" uid="uid://dghd7rii024ea" path="res://scenes/player/player.tscn" id="1_yqjtg"]
+[ext_resource type="PackedScene" uid="uid://dqew3weeg73or" path="res://scenes/objects/tree1.tscn" id="3_lnu2h"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lnu2h"]
+size = Vector2(20, 681)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lbhrr"]
+size = Vector2(384, 20)
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_lbhrr")
+metadata/_edit_vertical_guides_ = [385.0, -649.0]
+metadata/_edit_horizontal_guides_ = [640.0]
+
+[node name="MapBG" type="Sprite2D" parent="."]
+texture = ExtResource("1_uwrxv")
+centered = false
+
+[node name="Player" parent="." instance=ExtResource("1_yqjtg")]
+position = Vector2(89, 595)
+scale = Vector2(1, 1)
+
+[node name="Tree" parent="." instance=ExtResource("3_lnu2h")]
+position = Vector2(156, 370)
+
+[node name="Borders" type="Node2D" parent="."]
+
+[node name="FinishArea2D" type="Area2D" parent="Borders"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Borders/FinishArea2D"]
+polygon = PackedVector2Array(0, 0, 0, 127, 111, 127, 111, 95, 305, 96, 305, 127, 385, 127, 384, 0)
+
+[node name="MapBorders" type="Node" parent="Borders"]
+
+[node name="LeftMapBorder" type="StaticBody2D" parent="Borders/MapBorders"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/MapBorders/LeftMapBorder"]
+position = Vector2(-10, 319.5)
+shape = SubResource("RectangleShape2D_lnu2h")
+
+[node name="RightMapBorder" type="StaticBody2D" parent="Borders/MapBorders"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/MapBorders/RightMapBorder"]
+position = Vector2(395, 320)
+shape = SubResource("RectangleShape2D_lnu2h")
+
+[node name="TopMapBorder" type="StaticBody2D" parent="Borders/MapBorders"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/MapBorders/TopMapBorder"]
+position = Vector2(192, -10)
+shape = SubResource("RectangleShape2D_lbhrr")
+
+[node name="BottomMapBorder" type="StaticBody2D" parent="Borders/MapBorders"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/MapBorders/BottomMapBorder"]
+position = Vector2(192, 650)
+shape = SubResource("RectangleShape2D_lbhrr")
+
+[node name="Timers" type="Node" parent="."]
+
+[node name="CarTimer" type="Timer" parent="Timers"]
+wait_time = 4.0
+autostart = true
+
+[connection signal="body_entered" from="Borders/FinishArea2D" to="." method="_on_finish_area_2d_body_entered"]

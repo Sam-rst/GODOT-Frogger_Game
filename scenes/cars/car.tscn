@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://bc3xikkr33lyr"]
+
+[ext_resource type="Texture2D" uid="uid://ded8huv3lr1a7" path="res://assets/graphics/cars/yellow.png" id="1_dm3yp"]
+[ext_resource type="Script" uid="uid://b5x6fsg403je4" path="res://scenes/cars/car.gd" id="1_mx7b0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mx7b0"]
+size = Vector2(24, 14)
+
+[node name="Car" type="Area2D"]
+script = ExtResource("1_mx7b0")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_dm3yp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_mx7b0")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]

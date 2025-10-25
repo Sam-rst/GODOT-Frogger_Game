@@ -12,6 +12,7 @@ size = Vector2(9.433963, 10.377359)
 
 [node name="Tree1" type="StaticBody2D"]
 scale = Vector2(1.06, 1.06)
+collision_mask = 0
 script = SubResource("GDScript_0rnh4")
 
 [node name="Tree1" type="Sprite2D" parent="."]

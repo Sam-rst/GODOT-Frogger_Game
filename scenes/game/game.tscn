@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://4vxvmd16aeo1" path="res://scenes/game/game.gd" id="1_lbhrr"]
 [ext_resource type="Texture2D" uid="uid://doghmovcgeltw" path="res://assets/graphics/map.png" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://dghd7rii024ea" path="res://scenes/player/player.tscn" id="1_yqjtg"]
-[ext_resource type="PackedScene" uid="uid://dqew3weeg73or" path="res://scenes/objects/tree1.tscn" id="3_lnu2h"]
+[ext_resource type="PackedScene" uid="uid://dqew3weeg73or" path="res://scenes/objects/tree_1.tscn" id="3_lnu2h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lnu2h"]
 size = Vector2(20, 681)
@@ -23,6 +23,8 @@ centered = false
 [node name="Borders" type="Node2D" parent="."]
 
 [node name="FinishArea2D" type="Area2D" parent="Borders"]
+collision_layer = 0
+collision_mask = 2
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Borders/FinishArea2D"]
 polygon = PackedVector2Array(0, 0, 0, 127, 111, 127, 111, 95, 305, 96, 305, 127, 385, 127, 384, 0)
@@ -30,24 +32,32 @@ polygon = PackedVector2Array(0, 0, 0, 127, 111, 127, 111, 95, 305, 96, 305, 127,
 [node name="MapBorders" type="Node" parent="Borders"]
 
 [node name="LeftMapBorder" type="StaticBody2D" parent="Borders/MapBorders"]
+collision_layer = 8
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/MapBorders/LeftMapBorder"]
 position = Vector2(-10, 319.5)
 shape = SubResource("RectangleShape2D_lnu2h")
 
 [node name="RightMapBorder" type="StaticBody2D" parent="Borders/MapBorders"]
+collision_layer = 8
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/MapBorders/RightMapBorder"]
 position = Vector2(395, 320)
 shape = SubResource("RectangleShape2D_lnu2h")
 
 [node name="TopMapBorder" type="StaticBody2D" parent="Borders/MapBorders"]
+collision_layer = 8
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/MapBorders/TopMapBorder"]
 position = Vector2(192, -10)
 shape = SubResource("RectangleShape2D_lbhrr")
 
 [node name="BottomMapBorder" type="StaticBody2D" parent="Borders/MapBorders"]
+collision_layer = 8
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/MapBorders/BottomMapBorder"]
 position = Vector2(192, 650)
